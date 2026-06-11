@@ -3,15 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-// import Basic01 from './components/Basic01'
-import Quiz01 from './quiz01/Quiz01'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    // <Basic01 />
-    <Quiz01 />
+    <>
+      <div className="App-header">
+        <h1>React 프로젝트</h1>
+        <h3>김명현</h3>
+      </div>
+    </>
   )
 }
 
