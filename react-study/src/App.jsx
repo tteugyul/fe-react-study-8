@@ -3,11 +3,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import Quiz05 from './quiz/quiz05/Quiz05'
-import NewsBlog from '../newsblog/NewsBlog'
+import FoodMarket from './foodmarket/FoodMarket'
 function App() {
   return (
-    <NewsBlog />
+    <FoodMarket />
   )
 }
 
