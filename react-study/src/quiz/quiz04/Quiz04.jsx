@@ -1,49 +1,48 @@
-import '../../../newsblog/NewsBlog.css';
+import './Quiz04.css';
 import { useState } from 'react';
-import Modal from '../../../newsblog/Modal';
 function Quiz04() {
-    let title = 'React Study';//useState('React Study');
-    // let [news1, setNews1] = useState('어제의 뉴스');
-    // let [news2, setNews2] = useState('오늘의 뉴스');
-    // let [news3, setNews3] = useState('내일의 뉴스');
-    let [news, setNews] = useState(['어제의 뉴스', '오늘의 뉴스', '내일의 뉴스']);
-    let [likeCount, setLikeCount] = useState([0, 0, 0]);
-    let [modalFlag, setModalFlag] = useState(false);
+    //map -> <div className='box'>박스</div>
+
+    // let [boxes, setBoxes] = useState([<div className="box">박스</div>]);
+    // let [arr, setArr] = useState([1]);
+    let [arr, setArr] = useState([1, 2]);
     return (
         <div>
-            <div className='black-nav'>
-                <h3>Blog Header</h3>
-                {/* <div>React Study</div> */}
-                <div style={{ color: "orange", fontSize: '20px' }}>{title}</div>
-            </div>
-            {
-                news.map((news, index) => {
-                    return (
-                        <Haha
-                            a={news}
-                            b={likeCount[index]}
-                            key={index}
-                            c={() => {
-                                let d = [...likeCount];
-                                d[index]++;
-                                setLikeCount(d);
-                            }}
-                        />
-                    )
-                })
-            }
-        </div>
+            <div style={{ margin: '10px' }}>
+                <button onClick={() => {
+                    //단순 반복용도로 사용하는 arr배열에 배열의 갯수를 늘리기위해 값 추가
+                    // let temp = [1, ...arr];//[1,1];
+                    //let temp = [...arr, 1];
 
-    );
-}
-function Haha({ a, b, c }) {
-    return (
-        <div className='post-list'>
-            <h4>{a}
-                <span onClick={c}>★</span> {b}
-            </h4>
-            <p>내용자리</p>
-        </div >
+                    //[...Array(2)] => [undefined, undefined] 2개의 길이를 가진 배열 생성
+                    //그냥 Array(2)를 사용하면 [,] 아무것도 없는데 길이만 2개인 배열 생성이므로 사용X
+                    let temp = [...arr, arr.length + 1];
+                    //[...arr, 1]; [1,1];
+                    setArr(temp);
+                }}>추가</button>
+            </div>
+            <div>
+                {
+                    arr.map((_, b) => {// 만약 매개변수를 사용하지않는다면 _ 하나 입력
+                        return <div className='box' key={b}>박스</div>
+                    })
+                }
+            </div>
+        </div>
+        // <div>
+        //     <div style={{ margin: '10px' }}>
+        //         <button onClick={() => {
+        //             //boxes 배열에 화면에 그리는 요소를 추가하기
+        //             let temp = [...boxes];
+        //             temp.push(<div className="box">박스</div>);
+        //             setBoxes(temp);
+        //         }}>추가</button>
+        //     </div>
+        //     <div>
+        //         {boxes}
+        //         {/* <div className="box">박스</div> */}
+        //     </div>
+        // </div>
     );
 }
 export default Quiz04;
