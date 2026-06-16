@@ -4,9 +4,10 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import Quiz05 from './quiz/quiz05/Quiz05'
+import NewsBlog from '../newsblog/NewsBlog'
 function App() {
   return (
-    <Quiz05 />
+    <NewsBlog />
   )
 }
 

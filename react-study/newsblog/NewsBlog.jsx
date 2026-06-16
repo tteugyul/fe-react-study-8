@@ -4,6 +4,7 @@ import Modal from './Modal';
 
 function NewsBlog() {
     //제목 내용
+
     //하드코딩(텍스트 직접) vs 변수 vs state변수
     let title = 'React Study'; // useState('React Study');
     let [news1, setNews1] = useState('어제의 뉴스');
@@ -11,12 +12,18 @@ function NewsBlog() {
     let [news3, setNews3] = useState('내일의 뉴스');
     let [news, setNews] = useState(['어제의 뉴스', '오늘의 뉴스', '내일의 뉴스']);
     let [likeCount, setLikeCount] = useState(0);
+
     //likeCount1 likeCount2 likeCount3
     let [likeCountArr, setLikeCountArr] = useState([0, 0, 0]);  //뉴스별 좋아요 갯수
     let [modalFlag, setModalFlag] = useState(false);
+
     //Modal 창에 전달할 선택한 뉴스 포스팅의 관련 정보
     let [selectedTitle, setSelectedTitle] = useState('');
     let [selectedLikeCount, setSelectedLikeCount] = useState(0);
+
+    //input 요소에서 입력된 값을 저장하는 용도
+    let [inputText, setInputText] = useState('');
+
     return (
         <div>
             <div className='black-nav'>
@@ -24,6 +31,7 @@ function NewsBlog() {
                 {/* <div>React Study</div> */}
                 <div style={{ color: "orange", fontSize: "20px" }}>{title}</div>
             </div>
+
             {
                 news.map((item, index) => {
                     return (
@@ -57,6 +65,46 @@ function NewsBlog() {
                 setNews(temp);
             }}>긴급제목변경</button>
 
+            <div>
+                <input type='text' id="input_news_title" value={inputText} onChange={(event) => {
+
+                    //input 창에서 입력이 발생 -> onChange 변경된 함수 -> value 값 -> state변수에 저장
+
+                    // console.log(event);
+                    console.log(event.target.value);
+                    setInputText(event.target.value);
+
+                    // let input_title = document.getElementById('input_news_title');
+                    // let title = input_title.value;
+
+                    // 배열...push(title);
+                    // input_title.value='';
+                }} />
+                <button onClick={() => {
+                    //발행 버튼 클릭 -> input 입력한 값 state변수에 저장된값 -> 배열에 등록/추가 처리
+
+                    // inputText -> 등록하려는 값
+
+                    inputText = inputText.trim();
+
+                    // 추가하려는 값이 비어있으면? 진행X
+                    if (inputText == '') {
+                        alert('값을 입력해주세요');
+                        setInputText(''); //입력칸 초기화
+                        return;
+                    }
+
+                    let temp = [...news];
+                    temp.push(inputText);
+
+                    setInputText(''); // 입력된 값 제거
+
+                    // 좋아요 갯수 처리 추가
+                    let temp2 = [...likeCountArr, 0];
+                    setLikeCountArr(temp2);
+                    // likeCountArr.push(0); // 배열 뒤에 0 값 추가
+                }}>발행</button>
+            </div>
 
             {
                 /* modalFlag == true ?  <Modal/> : nul */
