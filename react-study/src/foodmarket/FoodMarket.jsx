@@ -2,6 +2,7 @@ import './FoodMarket.css';
 import FoodCard from './components/FoodCard';
 import Home from './pages/Home';
 import CustomerService from './pages/CustomerService';
+import Detail from './pages/Detail';
 
 // 화면에 보여주는 푸드 정보 기준 data import
 import foodsData from './data/foodsData';
@@ -46,6 +47,7 @@ function FoodMarket() {
             <Routes>
                 <Route path="/" element={<Home foods={foods} />} />
                 <Route path="/help" element={<CustomerService />} />
+                <Route path="/detail/:id" element={<Detail foods={foods} />} />
                 <Route path="/detail" element={<div><h1>detail page</h1></div>} />
                 <Route path="/info" element={<div><h1>info page</h1></div>} />
                 <Route path="/*" element={<div><h1>잘못된 접근입니다.</h1></div>} />
